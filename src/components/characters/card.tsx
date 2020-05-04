@@ -15,6 +15,10 @@ type Character = {
 };
 
 const Card = ({ character }: { character: Character }) => {
+  if (character === null || character === undefined) {
+    return null;
+  }
+
   const { name, species, image, type, created, ...details } = character;
   const [showDetails, setShowDetails] = useState(false);
   const toggleDetails = () => {

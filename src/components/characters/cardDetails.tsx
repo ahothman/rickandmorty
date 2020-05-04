@@ -9,15 +9,19 @@ type Details = {
 };
 
 const CardDetails = ({ details }: { details: Details }) => {
+  if (details === null || details === undefined) {
+    return null;
+  }
+
   const { origin, gender, episode } = details;
   return (
     <div className="card__details">
       <p>Details</p>
       <p>{gender}</p>
-      <p>origin {origin.name}</p>
+      <p>origin {origin && origin.name}</p>
       <div className="episode">
-        {episode.map((e) => (
-          <a className="episode__link" href={e}>
+        {episode.map((e, i) => (
+          <a key={i} className="episode__link" href={e}>
             {e}
           </a>
         ))}

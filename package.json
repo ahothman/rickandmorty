@@ -4,9 +4,21 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "prestart": "rm -rf dist && webpack",
+    "prestart": "tslint --project '.' && rm -rf dist && webpack",
     "start": "webpack-dev-server",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "babel": {
+    "presets": [
+      "@babel/env",
+      "@babel/react",
+      "@babel/typescript"
+    ]
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "./jest.setup.js"
+    ]
   },
   "author": "",
   "license": "ISC",
@@ -16,10 +28,20 @@
     "react-dom": "^16.13.1"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.9.6",
+    "@babel/preset-react": "^7.9.4",
+    "@babel/preset-typescript": "^7.9.0",
+    "@types/enzyme": "^3.10.5",
+    "@types/enzyme-adapter-react-16": "^1.0.6",
+    "@types/jest": "^25.2.1",
     "@types/react": "^16.9.34",
     "copy-webpack-plugin": "^5.1.1",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
     "html-webpack-plugin": "^4.3.0",
+    "jest": "^25.5.4",
     "ts-loader": "^7.0.2",
+    "tslint": "^6.1.2",
     "typescript": "^3.8.3",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11",

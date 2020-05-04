@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`card details render component correctly when details is empty 1`] = `ShallowWrapper {}`;
+
+exports[`card details render component correctly when details is not empty 1`] = `ShallowWrapper {}`;
+
+exports[`card render component correctly when character is empty 1`] = `ShallowWrapper {}`;
+
+exports[`card render component correctly when character is not empty 1`] = `ShallowWrapper {}`;
+
+exports[`characters render the compopnent correctly 1`] = `ShallowWrapper {}`;

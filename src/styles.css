@@ -1,0 +1,96 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 900px;
+  margin: 0 auto;
+  margin-top: 100px;
+  padding: 20px;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  background-color: #f5f5f5;
+  border: 1px solid #eee;
+  border-radius: 2px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  flex-basis: 30%;
+}
+
+.card__info {
+  display: flex;
+  box-shadow: 5px 5px 10px #dbdbdb;
+  padding: 5px;
+}
+
+.card__details {
+  background-color: #fafafa;
+  padding: 10px;
+}
+
+.info__details {
+  margin-left: 20px;
+}
+.info__item {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.episode {
+  max-height: 200px;
+  overflow-x: auto;
+}
+
+.episode__link {
+  display: block;
+}
+
+.error {
+  width: 500px;
+  margin: 0 auto;
+  margin-top: 200px;
+  text-align: center;
+}
+
+.controls {
+  width: 700px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+.controls__item {
+  margin-left: 5px;
+  padding: 5px;
+  width: 200px;
+  border: 1px solid #eee;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+}
+
+.page {
+  padding: 5px 10px;
+  border: 1px solid #eee;
+  cursor: pointer;
+}
+
+.page__link {
+  display: block;
+  text-decoration: none;
+  color: #776767;
+}
+
+.page--selected,
+.page:hover {
+  background-color: #eee;
+}

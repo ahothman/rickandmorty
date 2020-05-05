@@ -20,7 +20,7 @@ const Pagination = ({
   const pagesCount = Math.ceil(totalCount / itemsPerPage);
   const [paginationInfo, setPaginationInfo] = useState({
     from: 1,
-    to: linksNumber, // 5, // Math.min(pagesCount, 5),
+    to: Math.min(pagesCount, linksNumber),
   });
   const [currentPageIndex, setCurrentPageIndex] = useState(0);
 
@@ -31,7 +31,7 @@ const Pagination = ({
     if (to < pagesCount) {
       setPaginationInfo({
         from: to + 1,
-        to: to + linksNumber,
+        to: to + Math.min(linksNumber, pagesCount - to),
       });
     }
   };
@@ -60,16 +60,21 @@ const Pagination = ({
       firstUpdate.current = false;
       return;
     }
-    handelClick(Math.floor(linksNumber / 2), true);
+    handelClick(0, true);
   }, [paginationInfo.from]);
 
-  // set the page to the first pasge in case the data is refreshed
+  // set the page to the first page in case the data is refreshed
   useEffect(() => {
     setCurrentPageIndex(0);
+    setPaginationInfo({
+      from: 1,
+      to: linksNumber,
+    });
   }, [totalCount]);
 
   let links = pages.map((page, index) => (
     <li
+      key={index + 1}
       className={classNames("page", {
         "page--selected": currentPageIndex === index,
       })}
@@ -80,11 +85,11 @@ const Pagination = ({
   ));
 
   links = [
-    <li className="page" onClick={setPrev}>
+    <li key={0} className="page" onClick={setPrev}>
       {"<<"}
     </li>,
     ...links,
-    <li className="page" onClick={setNext}>
+    <li key={linksNumber + 1} className="page" onClick={setNext}>
       {">>"}
     </li>,
   ];

@@ -1,7 +1,8 @@
 import React from "react";
-import Character from "../index";
+import Characters from "../index";
 import Card from "../card";
 import CardDetails from "../cardDetails";
+import Pagination from "../../pagination";
 import { shallow } from "enzyme";
 
 const emptyCahracter = {};
@@ -27,11 +28,45 @@ const character = {
   created: "2017-11-04T18:48:46.250Z",
 };
 describe("characters", () => {
+  beforeAll(() => {
+    global.fetch = jest.fn();
+    global.fetch.mockImplementation(
+      () =>
+        new Promise((resolve) => {
+          resolve({
+            json: () => new Promise((resolve) => resolve([])),
+          });
+        })
+    );
+  });
+  afterAll(() => {
+    global.fetch.mockClear();
+  });
   it("render the compopnent correctly", () => {
-    const component = shallow(<Character />);
+    const component = shallow(<Characters />);
 
     expect(component).toMatchSnapshot();
-    expect(1).toEqual(1);
+  });
+  it("should hide and display the pagination properly", () => {
+    const component = shallow(<Characters />);
+    // console.log(component.debug());
+    component.find("#from").simulate("change", {
+      target: {
+        name: "from",
+        value: "10/10/2017",
+      },
+    });
+    component.find("#to").simulate("change", {
+      target: {
+        name: "to",
+        value: "11/10/2017",
+      },
+    });
+
+    component.find("#filter").simulate("click");
+    expect(component.find(Pagination).exists()).toEqual(false);
+    component.find("#clearfilter").simulate("click");
+    expect(component.find(Pagination).exists()).toEqual(true);
   });
 });
 

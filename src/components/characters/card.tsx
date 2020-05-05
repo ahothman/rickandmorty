@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CardDetails from "./cardDetails";
 
 type Character = {
@@ -24,6 +24,9 @@ const Card = ({ character }: { character: Character }) => {
   const toggleDetails = () => {
     setShowDetails(!showDetails);
   };
+  useEffect(() => {
+    setShowDetails(false);
+  }, [name, species, type]);
   return (
     <div className="card" onClick={toggleDetails}>
       <div className="card__info">
